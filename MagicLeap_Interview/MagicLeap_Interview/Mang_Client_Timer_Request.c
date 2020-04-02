@@ -13,12 +13,12 @@ void user_set_timer(int load_timer_value, user_callback_timer r_callback)
     int current_timer_load_value;
 
     // local callback function  which dedecate if services for single client done 
-    internal_callback_timer p = local_callback;
+    internal_callback_timer function_pointer_local_callback = local_callback;
 
     //Manager client request slot_timer 
 
     // inner callback finish current job 
-    if (p() == 1)
+    if (function_pointer_local_callback() == 1)
     {
         printf("client get slot timer\r\n");
     }
@@ -26,7 +26,7 @@ void user_set_timer(int load_timer_value, user_callback_timer r_callback)
     //Excute choosen request slot_timer 
     r_callback();
 
-    set_timer(load_timer_value, p);
+    set_timer(load_timer_value, function_pointer_local_callback);
 }
 
 void set_timer(int load_timer_value, internal_callback_timer l_callback)
