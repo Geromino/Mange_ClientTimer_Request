@@ -1,13 +1,23 @@
 
 #include "Mang_Client_Timer_Request.h"
 
-//private function  to be considur implemnt  in oop ( c++) 
+/**
+ * @brief  indicate finish client request timer
+ * @param  None
+ * @retval 1 time value  which set hw timer finish counting ticks
+ */
 uint8_t local_callback(void)
 {
     //printf("Job Done\r\n");
     return INTERNAL_CALLBACK_DONE;
 }
 
+/**
+ * @brief  Client Request timer value 
+ * @param  load_timer_value
+ * @param  r_callback
+ * @retval None
+ */
 void user_set_timer(int load_timer_value, user_callback_timer r_callback)
 {
     int current_timer_load_value;
@@ -29,10 +39,22 @@ void user_set_timer(int load_timer_value, user_callback_timer r_callback)
     set_timer(load_timer_value, function_pointer_local_callback);
 }
 
+/**
+ * @brief  set_timer in hw timer 
+ * @Note   in embedded system  need  implemnt this function 
+ * @param  load_timer_value
+ * @param  l_callback
+ * @retval None
+ */
 void set_timer(int load_timer_value, internal_callback_timer l_callback)
 {
     l_callback();
 }
+/**
+ * @brief  get_timer from hw 
+ * @param  None
+ * @retval Current time value in timer hw register in sec 
+ */
 
 int get_timer(void)
 {
