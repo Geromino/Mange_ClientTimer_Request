@@ -1,6 +1,5 @@
 #include "linkedlist_implement_stack.h"
-#include <stdlib.h>
-#include <stdio.h>
+
 
 linkedlist_stack* client_requests = NULL;
 /**
@@ -9,7 +8,7 @@ linkedlist_stack* client_requests = NULL;
  * @param  data of new item
  * @retval None
  */
-void push_to_begin_list(linkedlist_stack** head,int time_value, user_callback_func *callback){
+void push_to_begin_list(linkedlist_stack** head,int time_value, user_callback_func callback){
 
 	// alloc memory for new item 
 	linkedlist_stack* request_element =(linkedlist_stack*)malloc(sizeof(linkedlist_stack));
@@ -67,20 +66,20 @@ void pop(linkedlist_stack**head){
 }
 
 
-int top(linkedlist_stack* head) // show only the time request in order calculate the diffrence 
+element_request_client_timer top(linkedlist_stack* head) // show only the time request in order calculate the diffrence 
 {
-	int time_load_value=0;
+	element_request_client_timer element_request;
+
 	if (head != NULL)
 	{
-		time_load_value = head->clientrequest->time_value_request;
-
+		element_request.time_value_request = head->clientrequest->time_value_request;
 	}
 	else
 	{
-		time_load_value = STACK_IS_EMPTY;
+		element_request.time_value_request = STACK_IS_EMPTY;
+		element_request.UserFunc = NULL;
 	}
-
-	return time_load_value;
+	return element_request;
 }
 
 
@@ -106,7 +105,13 @@ int print_client_request_list(linkedlist_stack* head)
 	
 }
 
-element_request_client_timer* new_element(int time_value, user_callback_func *UFunc)
+/**
+ * @brief  alloc new memory for new client request for timer
+ * @param  time_value want value to load timer
+ * @param  user_callback_func function which user want to preform in the enf of the timer
+ * @retval pointer to new element 
+ */
+element_request_client_timer* new_element(int time_value, user_callback_func UFunc)
 {
 	element_request_client_timer* client_element = (element_request_client_timer*)malloc(sizeof(element_request_client_timer));
 	if (client_element != NULL)
@@ -120,5 +125,18 @@ element_request_client_timer* new_element(int time_value, user_callback_func *UF
 	}
 
 	return client_element;
+}
+
+void update_top(linkedlist_stack* head, int time_load_value)
+{
+
+}
+
+bool  is_list_empty(linkedlist_stack* head)
+{
+	if (head == NULL)
+		return true;
+	else
+		return false;
 }
 
