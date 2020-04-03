@@ -4,8 +4,6 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-//uint8_t callback_flag;;
-
 /**
  * @brief  indicate hw timer finish any client request  timer
  * @param  None
@@ -31,11 +29,11 @@ void user_set_timer(int load_timer_value, user_callback_func r_callback)
     int current_timer_load_value;
     element_request_client_timer current_client;
     //Manager client request slot_timer 
-
     //initialize client  request 
     current_client.time_value_request = load_timer_value;
     current_client.UserFunc = r_callback;
 
+  
     // local callback function  which dedecate if services for single client done 
     local_callback_func function_pointer_local_callback = local_callback;
 

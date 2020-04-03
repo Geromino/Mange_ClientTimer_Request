@@ -2,31 +2,44 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
+linkedlist_stack* client_requests = NULL;
 /**
  * @brief  push new item to the stack
  * @param  head of the stack
  * @param  data of new item
  * @retval None
  */
-void push(linkedlist_stack** head, int time_value, user_callback_func *callback){
+void push_to_begin_list(linkedlist_stack** head,int time_value, user_callback_func *callback){
+
 	// alloc memory for new item 
-	linkedlist_stack* client_request ;
-	client_request = (linkedlist_stack*)malloc(sizeof(linkedlist_stack));
-	//connect new item to begging of the list
-	if (client_request!=NULL)
+	linkedlist_stack* request_element =(linkedlist_stack*)malloc(sizeof(linkedlist_stack));
+
+	//verfying alloc operation 
+	if (request_element != NULL)
 	{
-		client_request->clientrequest = client_element_request(time_value, callback);
-		client_request->next = *head;
-		client_request->next->next = NULL;
-		//  the head update
-		(*head) = client_request;
+		request_element->clientrequest = new_element(time_value, callback);
+		request_element->next = NULL;
 	}
 	else
 	{
-		printf("failed allocte memory for new client item\r\n");
+		printf("alloc new request timer faild\r\n");
 	}
 
+	// if list is empty
+	if (*head == NULL)
+	{
+		*head = request_element;
+	}
+	else
+	{
+		if (request_element != NULL)
+		{
+			request_element->next = (*head);
+			*head = request_element;
+		}
+
+	}
+	
 }
 /**
  * @brief  pop item from stack
@@ -93,7 +106,7 @@ int print_client_request_list(linkedlist_stack* head)
 	
 }
 
-element_request_client_timer* client_element_request(int time_value, user_callback_func *UFunc)
+element_request_client_timer* new_element(int time_value, user_callback_func *UFunc)
 {
 	element_request_client_timer* client_element = (element_request_client_timer*)malloc(sizeof(element_request_client_timer));
 	if (client_element != NULL)
