@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "Mang_Client_Timer_Request.h"
 #include "linkedlist_implement_stack.h"
+
 void  user_callback(void);
 void  user_callback1(void);
 
@@ -14,7 +15,7 @@ int main(void)
 	{
 		push(&client_requests, timer_load_value, &user_callback);
 		push(&client_requests, timer_load_value1, &user_callback1);
-		print_stack(client_requests);
+		print_client_request_list(client_requests);
 	}
 	else
 	{

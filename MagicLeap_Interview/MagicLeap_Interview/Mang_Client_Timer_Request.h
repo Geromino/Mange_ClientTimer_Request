@@ -18,19 +18,19 @@ extern "C" {
 
 	
 
-	typedef uint8_t(*internal_callback_timer)(void);
-	typedef void    (*user_callback_timer)(void); // if need could be change  by  the user 
+	typedef uint8_t(*local_callback_func)(void);
+	typedef void    (*user_callback_func)(void); // if need could be change  by  the user 
 	
 	typedef struct _element_request_client_timer {
 
 		int time_value_request;
-		user_callback_timer UserFunc;
+		user_callback_func UserFunc;
 
 	}element_request_client_timer;
 
 	int  get_timer(void);
-	void set_timer(int load_timer_value, internal_callback_timer callback);
-	void user_set_timer(int load_timer_value, user_callback_timer callback);
+	void set_timer(int load_timer_value, local_callback_func callback);
+	void user_set_timer(int load_timer_value, user_callback_func callback);
 	
 
 	/* C++ detection */

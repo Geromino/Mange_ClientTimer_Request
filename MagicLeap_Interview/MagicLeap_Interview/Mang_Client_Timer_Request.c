@@ -2,26 +2,31 @@
 #include "Mang_Client_Timer_Request.h"
 #include "linkedlist_implement_stack.h"
 #include <stdlib.h>
+#include <stdint.h>
 
+//uint8_t callback_flag;;
 
 /**
- * @brief  indicate finish client request timer
+ * @brief  indicate hw timer finish any client request  timer
  * @param  None
  * @retval 1 time value  which set hw timer finish counting ticks
  */
 uint8_t local_callback(void)
 {
-    //printf("Job Done\r\n");
-    return INTERNAL_CALLBACK_DONE;
+    uint8_t callback_flag; // need  think if need to be global 
+
+    callback_flag = INTERNAL_CALLBACK_DONE;
+    return callback_flag;
 }
 
 /**
- * @brief  Client Request timer value 
- * @param  load_timer_value
- * @param  r_callback
+ * @brief  client recive timer service 
+ * @param  load_timer_value which pass to set_time(...) 
+ * @param  user_callback_func which will be excute by Mgmt_Algo or save in client_request_list datastructure 
+           until Mgmt_Algo will determine excute it 
  * @retval None
  */
-void user_set_timer(int load_timer_value, user_callback_timer r_callback)
+void user_set_timer(int load_timer_value, user_callback_func r_callback)
 {
     int current_timer_load_value;
     element_request_client_timer current_client;
@@ -32,7 +37,7 @@ void user_set_timer(int load_timer_value, user_callback_timer r_callback)
     current_client.UserFunc = r_callback;
 
     // local callback function  which dedecate if services for single client done 
-    internal_callback_timer function_pointer_local_callback = local_callback;
+    local_callback_func function_pointer_local_callback = local_callback;
 
 
     // inner callback finish current job 
@@ -48,18 +53,18 @@ void user_set_timer(int load_timer_value, user_callback_timer r_callback)
 }
 
 /**
- * @brief  set_timer in hw timer 
+ * @brief  load value into hw timer
  * @Note   in embedded system  need  implemnt this function 
- * @param  load_timer_value
- * @param  l_callback
+ * @param  load_timer_value hw timer load  value
+ * @param  local_callback_func which update callback_flag 
  * @retval None
  */
-void set_timer(int load_timer_value, internal_callback_timer l_callback)
+void set_timer(int load_timer_value, local_callback_func l_callback)
 {
     l_callback();
 }
 /**
- * @brief  get_timer from hw 
+ * @brief  get_timer value
  * @param  None
  * @retval Current time value in timer hw register in sec 
  */

@@ -20,11 +20,11 @@ typedef struct _linkedlist_stack {
 	struct _linkedlist_stack* next;
 }linkedlist_stack;
 
-element_request_client_timer* client_element_request(int time_value, user_callback_timer* UFunc);
+element_request_client_timer* client_element_request(int time_value, user_callback_func* UFunc);
 
-void push(linkedlist_stack** head, int time_value, user_callback_timer* callback);
+void push(linkedlist_stack** head, int time_value, user_callback_func* callback);
 
-int print_stack(linkedlist_stack* head);
+int print_client_request_list(linkedlist_stack* head);
 
 void pop(linkedlist_stack** head);
 

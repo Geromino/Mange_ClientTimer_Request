@@ -9,7 +9,7 @@
  * @param  data of new item
  * @retval None
  */
-void push(linkedlist_stack** head, int time_value, user_callback_timer *callback){
+void push(linkedlist_stack** head, int time_value, user_callback_func *callback){
 	// alloc memory for new item 
 	linkedlist_stack* client_request ;
 	client_request = (linkedlist_stack*)malloc(sizeof(linkedlist_stack));
@@ -77,7 +77,7 @@ int top(linkedlist_stack* head) // show only the time request in order calculate
  * @retval None
  */
 
-int print_stack(linkedlist_stack* head)
+int print_client_request_list(linkedlist_stack* head)
 {
 	int cnt = 0;
 	// save original pointer of the stack
@@ -93,7 +93,7 @@ int print_stack(linkedlist_stack* head)
 	
 }
 
-element_request_client_timer* client_element_request(int time_value, user_callback_timer *UFunc)
+element_request_client_timer* client_element_request(int time_value, user_callback_func *UFunc)
 {
 	element_request_client_timer* client_element = (element_request_client_timer*)malloc(sizeof(element_request_client_timer));
 	if (client_element != NULL)
