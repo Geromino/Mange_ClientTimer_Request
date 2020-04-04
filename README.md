@@ -10,5 +10,5 @@ Time Line Description
 Request for services of timer 
 Example :  time line. ......5,3,19,29,48,1......
 
-![](\images\view_stack.PNG)
+![](/images/view_stack.PNG)
 
