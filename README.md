@@ -3,7 +3,7 @@
 	embedded system give only one hw timer as resource therfore need implement 
 	services request for clients each client provide load value and callback function
 # Proposole solution
-		   linkedlist implement stack datastducture which save respectevly client request service timer list
+	linkedlist implement stack datastducture which save respectevly client request service timer list
            User_set_timer(int loadvalue,callback userfunc)
            the principle save the diffrence between actual left time in loaded timer and next request
 
