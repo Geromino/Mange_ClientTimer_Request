@@ -1,9 +1,15 @@
-# Project Title
+# Magic Client Request HW Timer Services 
 
 	embedded system give only one hw timer as resource therfore need implement 
 	services request for clients each client provide load value and callback function
-# Proposole solution
-	linkedlist implement stack datastducture which save respectevly client request service timer list
+## IDE 
+     IDE-visual studio 2019  TBD : create Mgmt_Client_Request dll
+	 IDE-TrueStudio ARM STM32F4Discovery  Mgmt_Client_Request.a (lib)
+	 
+	
+		
+### Proposole solution
+	    linkedlist implement stack datastducture which save respectevly client request service timer list
            User_set_timer(int loadvalue,callback userfunc)
            the principle save the diffrence between actual left time in loaded timer and next request
 
@@ -23,7 +29,7 @@ define usercallback function and load time value for load hw timer
 	
 	void  client1_request1_callback(void)
 	{
-	printf("Client Request excuted\r\n");
+		printf("Client Request excuted\r\n");
 	}
 ```
 
