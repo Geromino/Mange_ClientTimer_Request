@@ -51,3 +51,5 @@ Module.symvers
 Mkfile.old
 dkms.conf
 /Windows_Application_Mgmt_TimerResources/Debug
+/Windows_Application_Mgmt_TimerResources/Single_Hw_TimerResources/Debug
+/Windows_Application_Mgmt_TimerResources/.vs
