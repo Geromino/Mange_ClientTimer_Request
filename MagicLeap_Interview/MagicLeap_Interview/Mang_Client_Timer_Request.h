@@ -15,7 +15,7 @@ extern "C" {
 #include <windows.h>
 
 
-#define SYSTEM_TIME_INTERVAL  1000  // msec =1 sec 
+#define SYSTEM_TIME_INTERVAL  1000  // m sec =1 sec 
 #define	INTERNAL_CALLBACK_DONE 1
 #define CURRENT_TIMER_VALUE 56
 #define CLIENT_REQUEST_IS_ACHIEVED 0
@@ -30,9 +30,9 @@ typedef struct _element_request_client_timer {
 }element_request_client_timer;
 
 
-	int  get_timer(void);
-	void set_timer(unsigned int load_timer_value, local_callback_func callback);
-	void user_set_timer(int load_timer_value, user_callback_func callback);
+extern	int  get_timer(void);
+	    void set_timer(unsigned int load_timer_value, local_callback_func callback);
+extern	void user_set_timer(int load_timer_value, user_callback_func callback);
 	
 
 	/* C++ detection */
