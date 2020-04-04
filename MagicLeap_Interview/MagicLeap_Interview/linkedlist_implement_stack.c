@@ -8,12 +8,12 @@ linkedlist_stack* client_requests = NULL;
  * @param  data of new item
  * @retval None
  */
-void push_to_begin_list(linkedlist_stack** head,int time_value, user_callback_func callback){
+void insert_item_in_begin_list(linkedlist_stack** head,int time_value, user_callback_func callback){
 
-	// alloc memory for new item 
+	// allocation memory for new item 
 	linkedlist_stack* request_element =(linkedlist_stack*)malloc(sizeof(linkedlist_stack));
 
-	//verfying alloc operation 
+	//verifying allocation operation 
 	if (request_element != NULL)
 	{
 		request_element->clientrequest = new_element(time_value, callback);
@@ -21,7 +21,7 @@ void push_to_begin_list(linkedlist_stack** head,int time_value, user_callback_fu
 	}
 	else
 	{
-		printf("alloc new request timer faild\r\n");
+		printf("allocation new request timer failed\r\n");
 	}
 
 	// if list is empty
@@ -45,13 +45,13 @@ void push_to_begin_list(linkedlist_stack** head,int time_value, user_callback_fu
  * @param  head of the stack , update item to manage the requests from clients
  * @retval None
  */
-void pop(linkedlist_stack**head){
+void delete(linkedlist_stack**head){
 
 	linkedlist_stack* remove_item_head = *head;
 
 	if (*head != NULL)
 	{
-		//moving forword the pointer
+		//moving forward the pointer
 		*head = (*head)->next;
 		//update client request
 
@@ -66,7 +66,7 @@ void pop(linkedlist_stack**head){
 }
 
 
-element_request_client_timer top(linkedlist_stack* head) // show only the time request in order calculate the diffrence 
+element_request_client_timer top(linkedlist_stack* head) // show only the time request in order calculate the difference 
 {
 	element_request_client_timer element_request;
 
@@ -106,9 +106,9 @@ int print_client_request_list(linkedlist_stack* head)
 }
 
 /**
- * @brief  alloc new memory for new client request for timer
+ * @brief  allocation new memory for new client request for timer
  * @param  time_value want value to load timer
- * @param  user_callback_func function which user want to preform in the enf of the timer
+ * @param  user_callback_func function which user want to preform in the end of the timer
  * @retval pointer to new element 
  */
 element_request_client_timer* new_element(int time_value, user_callback_func UFunc)
@@ -129,7 +129,15 @@ element_request_client_timer* new_element(int time_value, user_callback_func UFu
 
 void update_top(linkedlist_stack* head, int time_load_value)
 {
-
+	if (head != NULL)
+	{
+		head->clientrequest->time_value_request = time_load_value;
+	}
+	else
+	{
+		printf("no item to update");
+	}
+	
 }
 
 bool  is_list_empty(linkedlist_stack* head)
